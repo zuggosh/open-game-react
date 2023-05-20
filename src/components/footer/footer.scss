@@ -1,0 +1,13 @@
+.footer {
+  height: 50px;
+  position: relative;
+  background-image: url("../../assets/img/bg.jpg");
+  background-size: cover;
+  background-position: center;
+
+  &__content {
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(to right, rgba(0,0,0,1) 0%,rgba(0,0,0,0.8) 20%,rgba(0,0,0,0.20) 50%,rgba(0,0,0,0.99) 99%,rgba(0,0,0,1) 100%);
+  }
+}

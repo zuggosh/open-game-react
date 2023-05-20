@@ -1,0 +1,11 @@
+@import '../../../style/variables';
+
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 250px;
+  border-radius: 15px;
+  margin-bottom: 6px;
+}

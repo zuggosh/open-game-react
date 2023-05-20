@@ -1,0 +1,16 @@
+@import '../../style/variables';
+
+.body {
+  background-color: $black;
+  min-height: calc(100vh - 130px);
+  max-height: calc(100vh - 130px);
+  margin-top: 15px;
+  margin-bottom: 15px;
+
+  &__card-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 15px;
+    justify-content: space-around;
+  }
+}
