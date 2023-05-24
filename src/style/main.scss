@@ -1,8 +1,12 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
+@import '~bootstrap-icons/font/bootstrap-icons.css';
+
 @import "./variables";
 
 body {
   background-color: $black;
   font-family: 'Montserrat', serif;
   box-sizing: content-box;
+  font-size: 12px;
+  color: $accentColor;
 }

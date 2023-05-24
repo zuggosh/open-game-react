@@ -1,3 +1,5 @@
+@import '../../style/variables';
+
 .header {
   height: 50px;
   position: relative;
@@ -8,6 +10,28 @@
   &__content {
     height: 100%;
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     background: linear-gradient(to right, rgba(0,0,0,1) 0%,rgba(0,0,0,0.8) 20%,rgba(0,0,0,0.20) 50%,rgba(0,0,0,0.99) 99%,rgba(0,0,0,1) 100%);
   }
+}
+
+.linksData {
+    &__link {
+      margin-left: 25px;
+    }
+
+    i {
+      display: inline-block;
+      font-size: 30px;
+      color: $accentColor;
+      text-shadow: 1px 1px 9px rgba($addColor, 0.89);
+      transition: color 200ms ease-out;
+
+      &:hover {
+        color: $addColor;
+        transition: color 400ms ease-out;
+      }
+    }
 }
