@@ -2,8 +2,11 @@ import React, {useState} from "react";
 import './card.scss';
 import CardImages from './cardImages';
 import {CardStateEnum, ICardComponent} from "./interface";
+import {useDispatch} from "react-redux";
+import { cardStateType } from "../../../redux/cards/cardReducer";
 
 function Card(props: ICardComponent)  {
+    const dispatch = useDispatch();
     const [isCardState, setCardState] = useState(CardStateEnum.isClose);
 
     const cardClassName = (): string => {
@@ -14,6 +17,7 @@ function Card(props: ICardComponent)  {
     }
 
     const cardClick = (): void => {
+        dispatch({type: cardStateType.openingCard, payload: props.card })
         setCardState(CardStateEnum.isOpen);
     }
 

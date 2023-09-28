@@ -1,7 +1,8 @@
-import React, {Component} from "react"
+import React from "react"
 import Card from './card/Card';
-import {fillCardsArray, filterUniqNumber} from './cards-hepler';
 import './body.scss';
+import {useSelector} from "react-redux";
+import {IConfigureStore} from "../../redux/inded";
 
 export interface ICard {
     number: number;
@@ -10,62 +11,20 @@ export interface ICard {
     id: string;
 }
 
-class Body extends Component {
-    private cards: ICard[] = fillCardsArray(10);
-    private isCanOpen: boolean = true;
+function Body(props: any) {
+    const cards2 = useSelector((state: IConfigureStore) =>  state.cardReducer);
 
-    private cardClicked(): void {
-        const openCards: ICard[] = this.cards.filter((card: ICard) => {
-            return card.isOpen && !card.isFindPair;
-        })
-        this.checkPairCard(openCards);
-    }
-
-    private checkPairCard(openCards: ICard[]): void {
-        if(openCards.length === 2) {
-            this.isCanOpen = false;
-            this.forceUpdate();
-            const cardsNumbers: number[] = openCards.map(card => {
-                return card.number;
-            });
-            const isGotPair: boolean = filterUniqNumber(cardsNumbers).length === 1;
-
-            if(isGotPair) {
-                this.markOpenCards(openCards);
-            } else {
-                this.closeOpenCards(openCards);
-            }
-        }
-    }
-
-    private markOpenCards(openCards: ICard[]): void {
-        openCards.forEach((card: ICard): void => {
-            card.isFindPair = true;
-        });
-        this.isCanOpen = true;
-    }
-
-    private closeOpenCards(openCards: ICard[]): void {
-        setTimeout((): void => {
-            openCards.forEach((card: ICard): void => {
-                card.isOpen = false;
-            });
-            this.forceUpdate();
-            this.isCanOpen = true;
-        }, 800);
-    }
-
-    render (): React.JSX.Element {
-        return <div className={'body'}>
+    return (
+        <div className={'body'}>
             <div className={'body__card-wrap'}>
-                {this.cards.map((card: ICard) => {
+                {cards2.map((card: ICard) => {
                     return (
-                        <Card card={card} key={card.id} isCanOpen={this.isCanOpen} cardClicked={this.cardClicked.bind(this)}/>
+                        <Card card={card} key={card.id}/>
                     );
                 })}
             </div>
         </div>
-    }
+    )
 }
 
 export default Body;
