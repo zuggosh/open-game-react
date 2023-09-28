@@ -1,8 +1,8 @@
 import React from "react"
 import Card from './card/Card';
 import './body.scss';
-import {useSelector} from "react-redux";
-import {IConfigureStore} from "../../redux/inded";
+import { useSelector } from "react-redux";
+import { IConfigureStore } from "../../redux";
 
 export interface ICard {
     number: number;
@@ -15,7 +15,7 @@ function Body(props: any) {
     const cards2 = useSelector((state: IConfigureStore) =>  state.cardReducer);
 
     return (
-        <div className={'body'}>
+        <div className={'body custom-scroll'}>
             <div className={'body__card-wrap'}>
                 {cards2.map((card: ICard) => {
                     return (

@@ -1,6 +1,6 @@
 import {ICard} from "./Body";
 
-function fillCardsArray (numberPairs: number): ICard[] {
+export function fillCardsArray (numberPairs: number): ICard[] {
     const cards: number[] = [];
     for(let i: number = 1; i < numberPairs; i++) {
         cards.push(i, i);
@@ -35,7 +35,7 @@ function shuffle(array: number[]): number[] {
     return array;
 }
 
-function filterUniqNumber(a: any) {
+export function filterUniqNumber(a: any) {
     for (var q=1, i=1; q<a.length; ++q) {
         if (a[q] !== a[q-1]) {
             a[i++] = a[q];
@@ -46,5 +46,3 @@ function filterUniqNumber(a: any) {
     return a;
 }
 
-export {filterUniqNumber};
-export {fillCardsArray};
