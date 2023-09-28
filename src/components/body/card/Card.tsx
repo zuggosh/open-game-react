@@ -1,44 +1,33 @@
-import React, {Component} from "react";
+import React, {useState} from "react";
 import './card.scss';
-import { ICard } from '../Body';
 import CardImages from './cardImages';
+import {CardStateEnum, ICardComponent} from "./interface";
 
-interface ICard1 {
-    card: ICard;
-    cardClicked: () => void;
-    isCanOpen: boolean;
-}
+function Card(props: ICardComponent)  {
+    const [isCardState, setCardState] = useState(CardStateEnum.isClose);
 
-class Card extends Component<ICard1> {
-
-    get cardClassName(): string {
+    const cardClassName = (): string => {
         const cardClassName: string = 'card';
-        if (this.props.card.isOpen) {
-            return `${cardClassName} card--isOpen`;
-        } else {
-            return `${cardClassName} card--isClose`;
-        }
+        return isCardState === CardStateEnum.isOpen
+            ? `${cardClassName} card--isOpen`
+            : `${cardClassName} card--isClose`;
     }
 
-    cardClick(): void {
-        if(this.props.isCanOpen) {
-            this.props.card.isOpen = true;
-            this.props.cardClicked();
-            this.forceUpdate();
-        }
+    const cardClick = (): void => {
+        setCardState(CardStateEnum.isOpen);
     }
 
-    render(): React.JSX.Element {
-        return <div className={this.cardClassName} onClick={this.cardClick.bind(this)}>
+    return (
+        <div className={cardClassName()} onClick={cardClick}>
             {
-                this.props.card.isOpen &&
+                isCardState === CardStateEnum.isOpen &&
                 <img
                     className={'card__faceImg'}
-                    src={CardImages[`${this.props.card.number}`]}
-                    alt={`card ${this.props.card.number}`}/>
+                    src={CardImages[`${props.card.number}`]}
+                    alt={`card ${props.card.number}`}/>
             }
         </div>
-    }
+    )
 }
 
 export default Card;
